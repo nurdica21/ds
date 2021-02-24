@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');*/
+
+Route::get('/posts/create','App\Http\Controllers\PostsController@create');
+
+Route::get('/dashboard/{user}','App\Http\Controllers\ProfileController@index')->middleware(['auth'])->name('dashboard.show');
+
+Route::get('/dashboard/{user}/edit','App\Http\Controllers\ProfileController@edit')->middleware(['auth'])->name('dashboard.edit');
 
 require __DIR__.'/auth.php';
